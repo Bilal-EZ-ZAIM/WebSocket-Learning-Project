@@ -1,0 +1,12 @@
+# Ignorer les dossiers et fichiers de configuration locaux
+.env
+
+# Ignorer le dossier des modules Node.js
+node_modules/
+
+# Ignorer les fichiers de log
+*.log
+
+# Ignorer les fichiers de cache
+.npm/
+.cache/
