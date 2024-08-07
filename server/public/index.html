@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Application</title>
+    <!-- تضمين Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5">Chat Application</h1>
+      <div class="chat-box mt-4">
+        <div class="messages">
+          <!-- الرسائل ستظهر هنا -->
+        </div>
+        <input
+          type="text"
+          id="messageInput"
+          class="form-control mt-3"
+          placeholder="Type a message"
+        />
+        <button id="sendButton" class="btn btn-primary mt-2">Send</button>
+      </div>
+    </div>
+    <!-- تضمين jQuery و Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts/script.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      socket.on("connect", () => {
+        console.log("a user connected");
+      });
+    </script>
+  </body>
+</html>
