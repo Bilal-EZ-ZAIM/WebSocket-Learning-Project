@@ -1,0 +1,51 @@
+<%- include('layout', { title: 'Welcome to ChatApp', body: `
+<div class="hero bg-primary text-white text-center py-5">
+  <div class="container">
+    <h1 class="display-4">Welcome to ChatApp!</h1>
+    <p class="lead">
+      Experience seamless and engaging conversations with our real-time chat
+      application.
+    </p>
+    <a href="/auth/register" class="btn btn-light btn-lg">Get Started</a>
+  </div>
+</div>
+
+<section id="features" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Features</h2>
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <h3>Real-Time Messaging</h3>
+        <p>
+          Instantly connect with friends and colleagues with our real-time
+          messaging feature.
+        </p>
+      </div>
+      <div class="col-md-4 text-center">
+        <h3>Group Chats</h3>
+        <p>
+          Create and manage group chats with ease. Stay connected with your
+          community.
+        </p>
+      </div>
+      <div class="col-md-4 text-center">
+        <h3>Secure & Private</h3>
+        <p>
+          We prioritize your privacy and security. Your conversations are
+          encrypted and safe.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="bg-light py-5">
+  <div class="container text-center">
+    <h2>Contact Us</h2>
+    <p>
+      If you have any questions or need support, feel free to
+      <a href="mailto:support@chatapp.com">email us</a>.
+    </p>
+  </div>
+</section>
+` }) %>

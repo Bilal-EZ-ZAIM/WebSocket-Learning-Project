@@ -1,0 +1,47 @@
+<%- include('layout', { title: 'login page', body: `
+<style>
+  .form-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+  }
+
+  .height{
+    height: 58.1vh;
+  }
+</style>
+
+<div class="container height ">
+  <div class="form-container mt-5">
+    <h2>Login</h2>
+    <form id="loginForm" action="/" method="get">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+      <p class="mt-3">Don't have an account? <a href="register">Register</a></p>
+    </form>
+  </div>
+</div>
+` }) %>

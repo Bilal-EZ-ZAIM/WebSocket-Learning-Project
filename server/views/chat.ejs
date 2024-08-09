@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Application</title>
+    <!-- تضمين Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .user {
+        height: 50px;
+        width: 50px;
+        background-color: #e1e1e1;
+        border-radius: 50%;
+      }
+
+      .now {
+        display: none;
+      }
+      .typinc {
+        color: #0b8619;
+        font-size: 18px;
+        font-weight: bold;
+        display: block;
+      }
+      .chat-box {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #f9f9f9;
+      }
+      .messages {
+        overflow-y: auto;
+        flex-grow: 1;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+      }
+      .message {
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        max-width: 80%;
+        word-wrap: break-word;
+      }
+      .message.sent {
+        background-color: #d1ffd6;
+        align-self: flex-end;
+      }
+      .message.received {
+        background-color: #e1e1e1;
+        align-self: flex-start;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5">Chat Application</h1>
+      <div>
+        <div class="user"></div>
+        <p id="typing" class="now">typing</p>
+      </div>
+      <div class="chat-box mt-4">
+        <div class="messages" id="messages">
+          <!-- الرسائل ستظهر هنا -->
+        </div>
+        <input
+          type="text"
+          id="messageInput"
+          class="form-control mt-3"
+          placeholder="Type a message"
+        />
+        <button id="sendButton" class="btn btn-primary mt-2">Send</button>
+      </div>
+    </div>
+    <!-- تضمين jQuery و Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      socket.on("connect", () => {
+        console.log("a user connected");
+      });
+
+      // عرض الرسائل الجديدة
+      socket.on("chat message", (data) => {
+        const { message, user } = data;
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        messageElement.classList.add(user === "bilal" ? "sent" : "received");
+        messageElement.textContent = message;
+        document.getElementById("messages").appendChild(messageElement);
+
+        const messagesContainer = document.getElementById("messages");
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      });
+
+      socket.on("chat typing", (data) => {
+        typing.classList.add("typinc");
+        console.log("typinj");
+
+        console.log(data);
+        console.log("typinj");
+      });
+
+      const messageInput = document.getElementById("messageInput");
+      const typing = document.getElementById("typing");
+      let typin = 0;
+
+      messageInput.addEventListener("input", (e) => {
+        console.log(e.target.value);
+
+        const data = {
+          message: e.target.value,
+          user: "bilal", // يمكنك تغيير اسم المستخدم حسب الحاجة
+        };
+        socket.emit("typing", data);
+        // messageInput.value = "";
+      });
+
+      messageInput.addEventListener("blur", (e) => {
+        typing.classList.remove("typinc");
+      });
+
+      document.getElementById("sendButton").addEventListener("click", () => {
+        const message = messageInput.value.trim();
+        if (message) {
+          const data = {
+            message,
+            user: "bilal", // يمكنك تغيير اسم المستخدم حسب الحاجة
+          };
+          socket.emit("message", data);
+          messageInput.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>

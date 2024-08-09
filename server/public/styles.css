@@ -1,0 +1,21 @@
+/* يمكنك إضافة المزيد من الأنماط المخصصة هنا */
+
+/* تخصيص الخلفية للقسم الرئيسي */
+.hero {
+  background-image: url("background.jpg"); /* استخدم صورة خلفية */
+  background-size: cover;
+  background-position: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero p {
+  font-size: 1.5rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
